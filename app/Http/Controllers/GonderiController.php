@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gonderi;
+use App\Models\Posta;
 
 class GonderiController extends Controller
 {
@@ -32,12 +33,23 @@ class GonderiController extends Controller
         $str = "Gönderi Başarıyla oluşturuldu...";
         if ($id <= 0)
         {
-            Gonderi::create([
+            $gonderi = Gonderi::create([
                 "user_id" => auth()->user()->id,
                 "title" => $request->title,
                 "aciklama" => $request->aciklama
             ]); 
-        }   
+        }
+        
+        $userId = auth()->user()->id;
+        $aboneler = auth()->user()->aboneler;
+        foreach ($aboneler as $abone)
+        {
+            Posta::create([
+                "user_id" => auth()->user()->id,
+                "abone_id" => $abone->id,
+                "gonderi_id" => $gonderi->id
+            ]);
+        }
         
         return redirect()->route('gonderiler')->withSuccess($str); 
     }
@@ -52,6 +64,15 @@ class GonderiController extends Controller
         $str = $gonderi->title." Başlıklı Gönderi Başarıyla silindi...";            
         $gonderi->delete();
         return redirect()->route('gonderiler')->withSuccess($str); 
+    }
+
+    function MailGonder()
+    {
+        mail::send('mail_sablon', $array, function ($message) use ($kisi) {
+            $message->from($kisi->mail, 'Mail gönderme');
+            $message->subject("Yeni İleti Eklendi.");
+            $message->to($kisi->mail);
+        });
     }
 
 }
