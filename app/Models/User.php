@@ -23,6 +23,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Abone');
     }
 
+    public function gonderiler(){
+        return $this->hasMany('App\Models\Gonderi');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

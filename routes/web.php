@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AboneController;
+use App\Http\Controllers\GonderiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('abone_duzenle/{id}', [AboneController::class, 'show'])->name('abone_duzenle');
     Route::POST('abone_crud/{id}', [AboneController::class, 'crud'])->name('abone_crud');
     Route::get('abone_destroy/{id}', [AboneController::class, 'destroy'])->name('abone_destroy');
+
+    Route::get('gonderiler', [GonderiController::class, 'index'])->name('gonderiler');
+    Route::get('gonderi_duzenle/{id}', [GonderiController::class, 'show'])->name('gonderi_duzenle');
+    Route::POST('gonderi_crud/{id}', [GonderiController::class, 'crud'])->name('gonderi_crud');
+    Route::get('gonderi_destroy/{id}', [GonderiController::class, 'destroy'])->name('gonderi_destroy');
 });

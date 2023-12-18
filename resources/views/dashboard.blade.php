@@ -7,7 +7,8 @@
             <div class="col-md-4">
                 <div class="nav flex-column nav-pills me-3" aria-orientation="vertical">                        
                     <a class="btn btn-info text-white" href="{{ route('dashboard') }}">Ana Sayfa</a>
-                    <a class="btn btn-info text-white mt-2" href="{{ route('aboneler') }}">Aboneler</a>                          
+                    <a class="btn btn-info text-white mt-2" href="{{ route('aboneler') }}">Aboneler</a> 
+                    <a class="btn btn-info text-white mt-2" href="{{ route('gonderiler') }}">Gönderiler</a>                                              
                 </div>
             </div>
             <div class="col-md-8">
