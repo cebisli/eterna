@@ -72,7 +72,6 @@
                 for(var i=0; i<result.length; i++)
                 {
                     var obj = result[i];
-                    console.log(obj);
                     var row = $('<tr>').appendTo(table);
                     $('<td>').html(i+1).appendTo(row);
                     $('<td>').html(obj.gonderi.title).appendTo(row);
