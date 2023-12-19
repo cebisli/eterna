@@ -27,9 +27,9 @@
                     <td>{{$abone->soyad}}</td>
                     <td>{{$abone->mail}}</td>
                     <td>
-                        <a onclick="PostalariGetir({{ $abone->id }})" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
-                        <a href=" {{ route('abone_duzenle', $abone->id )}} " class="btn btn-sm btn-primary"><i class="fa fa-pen"></i></a>
-                        <a href=" {{ route('abone_destroy', $abone->id )}} " class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                        <a onclick="PostalariGetir({{ $abone->id }})" title="Gönderilen e-postalar" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
+                        <a href=" {{ route('abone_duzenle', $abone->id )}} " title="Güncelle" class="btn btn-sm btn-primary"><i class="fa fa-pen"></i></a>
+                        <a href=" {{ route('abone_destroy', $abone->id )}} " title="Sil" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
             @endforeach
