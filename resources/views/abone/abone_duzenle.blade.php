@@ -25,7 +25,7 @@
             <input class="form-control form-control-lg mb-3" type="email" placeholder="email"
                 name="mail" aria-label=".form-control-lg example" @if($abone) value="{{$abone->mail}}" @endif>
 
-            <input class="btn btn-success mb-3" type="submit" value="Yeni Abone Ekle" aria-label=".form-control-lg example">
+            <input class="btn btn-success mb-3" type="submit" value="@if($abone) Abone Güncelle @else Yeni Abone Ekle @endif" aria-label=".form-control-lg example">
         </div>
     </div>
 </form>
