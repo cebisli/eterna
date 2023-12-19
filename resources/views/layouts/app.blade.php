@@ -23,8 +23,6 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}
@@ -34,7 +32,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="jquery-3.7.1.min.js"></script>
         <script src="{{ asset('js/common.js') }}"></script>
-        
+
         @stack('modals')
 
         @livewireScripts
