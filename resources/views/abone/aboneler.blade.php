@@ -36,7 +36,7 @@
         </tbody>
     </table>
 </div>
-<div id="GonderilenPostalar" title="Gönderlerin E-Postalar" style="display: none;">
+<div id="GonderilenPostalar" title="Gönderilen E-Postalar" style="display: none;">
     <div class="controls">
         <table class="table table-striped">
             <thead>
