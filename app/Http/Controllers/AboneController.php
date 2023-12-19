@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Abone;
+use App\Models\Posta;
 
 class AboneController extends Controller
 {
@@ -85,6 +86,12 @@ class AboneController extends Controller
         $str = $abone->ad." İsimli Abone Başarıyla silindi...";
         $abone->delete();
         return redirect()->route('aboneler')->withSuccess($str);
+    }
+
+    public function abonePostalar(Request $request)
+    {
+        $postalar = Posta::where('abone_id', $request->id)->with('gonderi')->get();
+        return response()->json($postalar, 200);
     }
 
 }

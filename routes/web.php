@@ -35,4 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('gonderi_duzenle/{id}', [GonderiController::class, 'show'])->name('gonderi_duzenle');
     Route::POST('gonderi_crud/{id}', [GonderiController::class, 'crud'])->name('gonderi_crud');
     Route::get('gonderi_destroy/{id}', [GonderiController::class, 'destroy'])->name('gonderi_destroy');
+
+
+    Route::get('abone_posta', [AboneController::class, 'abonePostalar'])->name('abonePostalar');
 });

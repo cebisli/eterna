@@ -27,6 +27,7 @@
                     <td>{{$abone->soyad}}</td>
                     <td>{{$abone->mail}}</td>
                     <td>
+                        <a onclick="PostalariGetir({{ $abone->id }})" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
                         <a href=" {{ route('abone_duzenle', $abone->id )}} " class="btn btn-sm btn-primary"><i class="fa fa-pen"></i></a>
                         <a href=" {{ route('abone_destroy', $abone->id )}} " class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                     </td>
@@ -35,5 +36,53 @@
         </tbody>
     </table>
 </div>
+<div id="GonderilenPostalar" title="Gönderlerin E-Postalar" style="display: none;">
+    <div class="controls">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Gönderi Adı</th>
+                <th scope="col">Gönderilme Zamanı</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
+
+@section('js')
+<script>
+    function PostalariGetir(id)
+    {
+        let ajax_url = "{{ route('abonePostalar') }}";
+
+        $.ajax({
+            type: "GET",
+            url: ajax_url ,
+            contentType: "application/json; charset=utf-8",
+            data: { id: id },
+            dataType: 'json',
+            success: function (result) {
+                var table = $('#GonderilenPostalar TBODY');
+                table.html('');
+                for(var i=0; i<result.length; i++)
+                {
+                    var obj = result[i];
+                    console.log(obj);
+                    var row = $('<tr>').appendTo(table);
+                    $('<td>').html(i+1).appendTo(row);
+                    $('<td>').html(obj.gonderi.title).appendTo(row);
+                    $('<td>').html(obj.created_at.substr(0,10)).appendTo(row);
+
+                }
+                ShowBSDialog("GonderilenPostalar", null, Modal_Large);
+             }
+        });
+
+    }
+</script>
 @endsection
