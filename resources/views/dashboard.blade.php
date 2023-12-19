@@ -8,6 +8,7 @@
                 <div class="nav flex-column nav-pills me-3" aria-orientation="vertical">
                     <a class="btn btn-info text-white mt-2" href="{{ route('aboneler') }}">Aboneler</a>
                     <a class="btn btn-info text-white mt-2" href="{{ route('gonderiler') }}">Gönderiler</a>
+                    <a class="btn btn-info text-white mt-2" href="{{ route('postalar') }}">Gönderilen Postalar</a>
                     <a class="btn btn-info text-white mt-2" href="{{ route('logout') }}">Çıkış Yap</a>
                 </div>
             </div>

@@ -27,6 +27,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Gonderi');
     }
 
+    public function postalar(){
+        return $this->hasMany('App\Models\Posta');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

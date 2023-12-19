@@ -13,4 +13,8 @@ class Abone extends Model
 
     public $timestamps = false;
 
+    public function AbonePostlari(){
+        return $this->hasMany('App\Models\Posta');
+    }
+
 }

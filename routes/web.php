@@ -22,7 +22,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('panel', [MainController::class, 'dashboard'])->name('dashboard');
-    Route::get('/logout', [MainController::class, 'logout'])->name('logout');
+    Route::get('logout', [MainController::class, 'logout'])->name('logout');
+    Route::get('postalar', [MainController::class, 'gonderilenPostalar'])->name('postalar');
 
     Route::get('aboneler', [AboneController::class, 'index'])->name('aboneler');
     Route::get('abone_duzenle/{id}', [AboneController::class, 'show'])->name('abone_duzenle');

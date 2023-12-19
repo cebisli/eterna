@@ -12,4 +12,8 @@ class Gonderi extends Model
     protected $fillable = ['user_id', 'title', 'aciklama'];
 
     public $timestamps = false;
+
+    public function GonderiPostlari(){
+        return $this->hasMany('App\Models\Posta');
+    }
 }
