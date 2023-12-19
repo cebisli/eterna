@@ -21,4 +21,9 @@ class MainController extends Controller
         return view('postalar', compact('postalar'));
     }
 
+    public function gonderiPostalari($id){
+        $postalar = Posta::where('gonderi_id',$id)->with('abone', 'gonderi')->paginate(10);
+        return view('postalar', compact('postalar'));
+    }
+
 }

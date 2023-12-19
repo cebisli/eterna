@@ -1,7 +1,10 @@
 @extends('dashboard')
 
+@section('baslik')
+    Abone Listesi
+@endsection
+
 @section('icerik')
-    
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a class="btn btn-primary btn-sm m-2" href="{{ route('abone_duzenle','-1')}}">Yeni Abone</a>
 </div>
@@ -21,12 +24,12 @@
                 <td>{{$abone->ad}}</td>
                 <td>{{$abone->soyad}}</td>
                 <td>{{$abone->mail}}</td>
-                <td>                    
+                <td>
                     <a href=" {{ route('abone_duzenle', $abone->id )}} " class="btn btn-sm btn-primary"><i class="fa fa-pen"></i></a>
-                    <a href=" {{ route('abone_destroy', $abone->id )}} " class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>    
+                    <a href=" {{ route('abone_destroy', $abone->id )}} " class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                 </td>
-            </tr>     
-        @endforeach           
+            </tr>
+        @endforeach
     </tbody>
 </table>
 

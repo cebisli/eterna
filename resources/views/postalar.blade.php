@@ -1,5 +1,9 @@
 @extends('dashboard')
 
+@section('baslik')
+    Gönderilen E-Postalar
+@endsection
+
 @section('icerik')
 
 <table class="table">
