@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gonderi;
 use App\Models\Posta;
+use Mail;
 
 class GonderiController extends Controller
 {
     public function index()
     {
-        $gonderiler = auth()->user()->gonderiler;        
+        $gonderiler = auth()->user()->gonderiler;
         return view('gonderi/gonderiler', compact('gonderiler'));
     }
 
@@ -20,14 +21,14 @@ class GonderiController extends Controller
         {
             $gonderi = Gonderi::whereId($id)->first();
             if (! $gonderi)
-                return redirect()->route('gonderiler')->withErrors("Gönderi Bulunamadı"); 
+                return redirect()->route('gonderiler')->withErrors("Gönderi Bulunamadı");
         }
         else
             $gonderi = null;
         return view('gonderi/gonderi_duzenle', compact('gonderi','id'));
     }
-    
-    
+
+
     public function crud(Request $request, $id)
     {
         $str = "Gönderi Başarıyla oluşturuldu...";
@@ -37,10 +38,9 @@ class GonderiController extends Controller
                 "user_id" => auth()->user()->id,
                 "title" => $request->title,
                 "aciklama" => $request->aciklama
-            ]); 
+            ]);
         }
-        
-        $userId = auth()->user()->id;
+
         $aboneler = auth()->user()->aboneler;
         foreach ($aboneler as $abone)
         {
@@ -49,9 +49,23 @@ class GonderiController extends Controller
                 "abone_id" => $abone->id,
                 "gonderi_id" => $gonderi->id
             ]);
+
+            $array = [
+                'ad'=>$abone->ad,
+                'soyad'=>$abone->soyad,
+                'mail'=>$abone->mail,
+                'title'=>$gonderi->title,
+                'aciklama'=>$gonderi->aciklama
+            ];
+
+            Mail::send('mail_sablon', $array, function ($message) use ($abone) {
+                $message->from($abone->mail, 'Mail gönderme');
+                $message->subject("Yeni İleti Eklendi.");
+                $message->to($abone->mail);
+            });
         }
-        
-        return redirect()->route('gonderiler')->withSuccess($str); 
+
+        return redirect()->route('gonderiler')->withSuccess($str);
     }
 
     public function destroy($id)
@@ -59,20 +73,11 @@ class GonderiController extends Controller
         $gonderi = Gonderi::find($id) ?? abort(404, 'Gönderi Bulunamadı');
 
         if (! $gonderi)
-            return redirect()->route('gonderiler')->withErrors("Gönderi Bulunamadı"); 
+            return redirect()->route('gonderiler')->withErrors("Gönderi Bulunamadı");
 
-        $str = $gonderi->title." Başlıklı Gönderi Başarıyla silindi...";            
+        $str = $gonderi->title." Başlıklı Gönderi Başarıyla silindi...";
         $gonderi->delete();
-        return redirect()->route('gonderiler')->withSuccess($str); 
-    }
-
-    function MailGonder()
-    {
-        mail::send('mail_sablon', $array, function ($message) use ($kisi) {
-            $message->from($kisi->mail, 'Mail gönderme');
-            $message->subject("Yeni İleti Eklendi.");
-            $message->to($kisi->mail);
-        });
+        return redirect()->route('gonderiler')->withSuccess($str);
     }
 
 }
