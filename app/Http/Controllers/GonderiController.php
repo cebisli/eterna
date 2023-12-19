@@ -31,6 +31,11 @@ class GonderiController extends Controller
 
     public function crud(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'aciklama' => 'required|min:10',
+        ]);
+
         $str = "Gönderi Başarıyla oluşturuldu...";
         if ($id <= 0)
         {

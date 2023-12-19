@@ -26,5 +26,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $postalar->links() }}
 </div>
 @endsection
