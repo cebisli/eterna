@@ -1,0 +1,38 @@
+Uygulamanın İndirmesi ve Kurulması
+git clone https://github.com/cebisli/eterna.git komutunu kullaranarak uygulama indirilir.
+
+eterna isimli veritabanı oluşturulması gerekir.
+
+İndirilen kaynak dosyalar ide içerisinde açılır.
+ 
+composer update  komutunu kullanarak bilgisayarda yer alan composer güncellenir. eğer bilgisayarda composer yoksa
+composer install komutu ile composer indirilir.
+
+.env.example isimli dosyanın kopyası oluşturularak ismi .env olarak adlandırılır. .env dosyası içerisinde
+yer alan veribanı ve mail ayarları yapılır. Örnek; aşağıdaki gibi olabilir.
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=eterna
+DB_USERNAME=root
+DB_PASSWORD=1234
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=89a9d0ed7472c4
+MAIL_PASSWORD=9156cd2ccf0a5e
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
+
+php artisan migrate:fresh --seed  kodu ile veritabanı ayarlanır. 
+
+sistem tarafından test amaçlı kullanıcı oluşmaktadır. Bu bilgiler şu şekildedir. Bu bilgiler ile sisteme giriş sağlanabilir.
+mail = test@hotmail.com
+password = 123456789
+
+
+php artisan serve  komutu ile uygulamanın başlanması sağlanır.
+ 
